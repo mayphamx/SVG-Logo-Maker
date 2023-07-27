@@ -1,7 +1,7 @@
 // packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const {Circle, Triangle, Square} = require('./lib/shapes');
+const {Triangle, Circle, Square} = require('./lib/shapes');
 
 // type = user response type, name = variable where answer is stored, message = question user will see before they answer
 inquirer.prompt([
@@ -10,6 +10,14 @@ inquirer.prompt([
     type: 'input',
     name: 'character',
     message: 'Enter up to 3 characters',
+    validate: function(inputCharacters){
+      if(inputCharacters.length>3) {
+        console.log("\nPlease enter 3 characters or less")
+        return;
+      } else {
+        return true;
+      }
+    }
   },
   {
     // WHEN I am prompted for the text color THEN I can enter a color keyword (OR a hexadecimal number)
@@ -31,22 +39,23 @@ inquirer.prompt([
     message: 'Enter the shape color',
   },
 ])
-// ?? WHEN I have entered input for all the prompts THEN an SVG file is created named `logo.svg`AND the output text "Generated logo.svg" is printed in the command line
+// WHEN I have entered input for all the prompts THEN an SVG file is created named `logo.svg`AND the output text "Generated logo.svg" is printed in the command line
 .then ((data) => {
   let shape;
 
   // modify contents of shapes
   if (data.shape === 'circle') {
-    shape = new Circle(data.textColor, date.shapeColor, date.character.toUpperCase)} 
+    shape = new Circle(data.textColor, data.shapeColor, data.character.toUpperCase)} 
   if (data.shape === 'triangle') {
-    shape = new Triangle(data.textColor, date.shapeColor, date.character.toUpperCase)}
+    shape = new Triangle(data.textColor, data.shapeColor, data.character.toUpperCase)}
   if (data.shape === 'square') {
-    shape = new Square(data.textColor, date.shapeColor, date.character.toUpperCase)}
+    shape = new Square(data.textColor, data.shapeColor, data.character.toUpperCase)}
 
   // create logo file and throw error
   fs.writeFile("./examples/logo.svg", shape.render(), (err, result)=> {
     if (err) throw err;
-    err ? console.log(err) : console.log('Generated logo.svg');
+    console.log('svg has been created!')
+    // err ? console.log(err) : console.log('Generated logo.svg');
   });
 });
 
