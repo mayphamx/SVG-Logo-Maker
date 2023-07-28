@@ -44,18 +44,18 @@ inquirer.prompt([
   let shape;
 
   // modify contents of shapes
-  if (data.shape === 'circle') {
-    shape = new Circle(data.textColor, data.shapeColor, data.character.toUpperCase)} 
-  if (data.shape === 'triangle') {
-    shape = new Triangle(data.textColor, data.shapeColor, data.character.toUpperCase)}
-  if (data.shape === 'square') {
-    shape = new Square(data.textColor, data.shapeColor, data.character.toUpperCase)}
+  if (data.shape === 'Triangle') {
+    shape = new Triangle(data.character.toUpperCase(),data.textColor,data.shapeColor)}
+  if (data.shape === 'Circle') {
+    shape = new Circle(data.character.toUpperCase(),data.textColor,data.shapeColor)} 
+  if (data.shape === 'Square') {
+    shape = new Square(data.character.toUpperCase(),data.textColor,data.shapeColor)}
 
   // create logo file and throw error
   fs.writeFile("./examples/logo.svg", shape.render(), (err, result)=> {
-    if (err) throw err;
-    console.log('svg has been created!')
-    // err ? console.log(err) : console.log('Generated logo.svg');
+    // if (err) throw err;
+    // console.log('svg has been created!')
+    err ? console.log(err) : console.log('Generated logo.svg');
   });
 });
 
