@@ -1,4 +1,5 @@
 // packages needed for this application
+// use inquirer for collecting input from the user
 const fs = require('fs');
 const inquirer = require('inquirer');
 const {Triangle, Circle, Square} = require('./lib/shapes');
@@ -12,7 +13,7 @@ inquirer.prompt([
     message: 'Enter up to 3 characters',
     validate: function(inputCharacters){
       if(inputCharacters.length>3) {
-        console.log("\nPlease enter 3 characters or less")
+        console.log("\nPlease enter 3 characters or less (including spaces)")
         return;
       } else {
         return true;
@@ -53,8 +54,7 @@ inquirer.prompt([
 
   // create logo file and throw error
   fs.writeFile("./examples/logo.svg", shape.render(), (err, result)=> {
-    // if (err) throw err;
-    // console.log('svg has been created!')
+    // ??? how to test error ???
     err ? console.log(err) : console.log('Generated logo.svg');
   });
 });
