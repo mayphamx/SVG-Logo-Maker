@@ -9,5 +9,4 @@ This challenge was created to build logos upon users specific requests to preven
 ![Terminal Screenshot](./assets/Images/terminal%20pic.png)
 
 https://drive.google.com/file/d/1zuxja4vwXu897WxFSa1k4PG0bqVkYcmi/view
-
 https://github.com/mayphamx/SVG-Logo-Maker 
